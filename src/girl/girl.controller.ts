@@ -3,6 +3,7 @@ import { Inject, Param } from '@nestjs/common/decorators';
 import { GirlService } from './girl.service';
 import { BoyService } from './../boy/boy.service';
 
+// 路由文件
 @Controller('girl')
 export class GirlController {
   constructor(
@@ -28,10 +29,10 @@ export class GirlController {
     return this.girlService.getGirls()
   }
 
-  @Get('/add')
+  @Post('/add')
   addGrils(@Body() body: any): any {
-    console.log(body)
-    return this.girlService.addGirl()
+    console.log('后端接收到的参数', body)
+    return this.girlService.addGirl(body)
   }
 
   @Get('/delete/:id')

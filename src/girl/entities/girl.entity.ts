@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, Generated } from 'typeorm'
 
+// 实体
 @Entity()
 
 export class Girl {

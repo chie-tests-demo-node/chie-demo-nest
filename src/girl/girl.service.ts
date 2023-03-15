@@ -17,11 +17,7 @@ export class GirlService {
   }
 
   // 增加一个女孩
-  addGirl(): any {
-    const data = new Girl()
-    data.name = '大梨';
-    data.age = 25;
-    data.skill = '吃喝玩乐';
+  addGirl(data: any): any {
     return this.girl.save(data)
   }
 

@@ -24,14 +24,13 @@ export class GirlController {
     return this.shopName
   }
 
-  @Get()
+  @Get('/getList')
   getGirls(): any {
     return this.girlService.getGirls()
   }
 
   @Post('/add')
   addGrils(@Body() body: any): any {
-    console.log('后端接收到的参数', body)
     return this.girlService.addGirl(body)
   }
 
@@ -47,7 +46,7 @@ export class GirlController {
     return this.girlService.updateGirl(id)
   }
 
-  @Get('all')
+  @Get('/all')
   getAllGirls() {
     return this.girlService.getAllGirls()
   }

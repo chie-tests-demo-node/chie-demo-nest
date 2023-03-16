@@ -13,10 +13,13 @@ function MiddleWareAll(req: any, res: any, next: any) {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // app.setGlobalPrefix('/haha') 配置全局的路由前缀
-  app.use(cors({
-    origin: ['http://127.0.0.1:3005'], // 所要允许跨域的ip
-    methods: ['GET', 'POST'],
-  }))
+  app.use(cors(
+    {
+      origin: ['http://127.0.0.1:3005'],
+      methods: ['GET', 'POST'],
+    }
+  ))
+
   // app.use(MiddleWareAll)
   await app.listen(3002); //监听的端口
 

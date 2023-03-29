@@ -8,17 +8,15 @@ export class GirlService {
   // 依赖注入
   constructor(@InjectRepository(Girl) private readonly girl: Repository<Girl>) { }
 
-  getGirls(): any {
-    return {
-      code: 0,
-      data: ['小段', '小柴'],
-      msg: '请求女孩列表成功'
-    }
-  }
-
   // 增加一个女孩
-  addGirl(data: any): any {
+  async addGirl(data: any) {
+	// const onePerson = this.girl.findOne({select:['name']})
+	// console.log(onePerson)
     return this.girl.save(data)
+  }
+  
+  findOneGirl(id:any){
+	  return this.girl.findOne(id)
   }
 
   // 删除一个女陔
@@ -27,16 +25,22 @@ export class GirlService {
   }
 
   // 修改女陔信息
-  updateGirl(id: number) {
-    let data = new Girl()
-    data.name = 'xiaoya';
-    data.age = 24;
-    return this.girl.update(id, data)
+  updateGirl(data: any) {
+    return this.girl.update(data.id, data)
   }
-
-  // 查询所有女孩信息
-  getAllGirls() {
-    return this.girl.find()
+  
+  /**
+   * 查询所有女孩信息
+   */
+  async getAllGirls() {
+    const girlInfo = await this.girl.find()
+	const newResult = Array.from(new Set(girlInfo))
+    const girlTotal = girlInfo.length
+    const allGirlInfo = {
+      girlList: newResult.reverse(),
+      total: girlTotal
+    }
+    return allGirlInfo
   }
 
   // 根据名称查询女孩信息(模糊搜索)

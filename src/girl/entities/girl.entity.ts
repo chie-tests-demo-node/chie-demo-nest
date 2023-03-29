@@ -22,7 +22,7 @@ export class Girl {
   skill: string
 
   //自动生成时间
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'datetime' })
   entryTime: Date
 
 }
